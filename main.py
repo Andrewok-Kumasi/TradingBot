@@ -19,6 +19,7 @@ class MutidimensionalTransdimensionalSplitter(QCAlgorithm):
     def EveryMarketOpen(self):
         close = self.History(self.symbol, 31, Resolution.Daily)["close"]
         todayvol = np.std(close[1:31])
+        
         yesterdayvol = np.std(close[0:30])
         deltavol = (todayvol - yesterdayvol) / todayvol
         self.lookback = round(self.lookback * (1+ deltavol))
